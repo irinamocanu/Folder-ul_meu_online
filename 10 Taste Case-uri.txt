@@ -1,0 +1,57 @@
+Feature: Pagina utest.com
+
+ Scenario 1: Logarea ca utilizator existent
+    Given Utilizatorul este pe pagina de logare uTest
+    When Utilizatorul introduce datele sale valide
+    And  Utilizatorul dă click pe butonul de conectare
+    Then Utilizatorul ar trebui să fie redirecționat către pagina contului său
+
+    When Utilizatorul introduce datele valide, dar cu o parolă incorectă
+    And  Utilizatorul dă click pe butonul de conectare
+    Then Utilizatorul ar trebui să primească un mesaj de eroare că parola introdusă este incorectă
+
+Scenario 2: Căutarea proiectelor de testare
+    Given Utilizatorul este autentificat pe uTest
+    When  Utilizatorul introduce un termen în bara de căutare
+    And   Utilizatorul dă click pe butonul de căutare
+    Then  Utilizatorul ar trebui să văd o listă de proiecte de testare specifice
+
+    When  Utilizatorul introduce un termen care nu există în bara de căutare
+    And   Utilizatorul dă click pe butonul de căutare
+    Then  Utilizatorul ar trebui să primească un mesaj că nu s-au găsit rezultate pentru termenul căutat
+
+Scenario 3: Aplicarea pentru un proiect de testare
+    Given Utilizatorul este autentificat pe uTest
+    When  Utilizatorul caută un proiect de testare specific
+    And   Utilizatorul dă click pe butonul de aplicare
+    Then  Utilizatorul ar trebui să primească un mesaj de confirmare
+
+ Scenario 4: Încercare de acces la resurse fără autentificare
+    Given Utilizatorul nu este autentificat pe uTest
+    When  Utilizatorul încearcă să acceseze secțiunea de resurse de învățare
+    Then  Utilizatorul ar trebui să fie redirecționat către pagina de autentificare
+
+ Scenario 5: Încercare de evaluare a unui proiect fără a fi participat la acesta
+    Given Utilizatorul nu este autentificat pe uTest
+    When  Utilizatorul nu a participat la nici un proiect de testare
+    And   Utilizatorul vrea să-l evalueze
+    Then  Utilizatorul nu ar trebui să aibă opțiunea de a oferi feedback și evaluare
+
+Scenario 6: Încercare de interacțiune fără autentificare
+    Given Utilizatorul nu este autentificat pe uTest
+    When  Utilizatorul încearcă să acceseze secțiunea comunității
+    Then  Utilizatorul ar trebui să fie redirecționat către pagina de autentificare
+
+Scenario 7: Actualizarea informațiilor din profilul utilizatorului
+    Given Utilizatorul este autentificat pe uTest
+    When  Utilizatorul navighează către setările profilului său
+    And   Utilizatorul editează informațiile din profil
+    And   Utilizatorul salvează modificările
+    Then  Utilizatorul ar trebui să vadă actualizarea profilului
+
+Scenario 8: Aplicarea pentru un proiect de testare dintr-o regiune specifică
+    Given Utilizatorul este autentificat pe uTest
+    When  Utilizatorul se află în secțiunea ”Projects Board”
+    And   Utilizatorul dă click pe dropdown list, selectează orașul dorit 
+    Then  Utilizatorul ar trebui să vadă proiectele specifice orașului
+
